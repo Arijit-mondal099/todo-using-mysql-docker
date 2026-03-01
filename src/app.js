@@ -5,6 +5,7 @@ import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 
 import { errorHandler, notFound } from "./middlewares/error.middleware.js";
+import todoRoutes from "./routes/todo.routes.js";
 
 const app = express();
 

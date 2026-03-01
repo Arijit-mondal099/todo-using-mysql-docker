@@ -1,5 +1,5 @@
 import mysql from "mysql2/promise";
-import { logger } from "../utils/logger";
+import { logger } from "../utils/logger.js";
 
 export const pool = mysql.createPool({
   host: process.env.DB_HOST,
@@ -20,7 +20,7 @@ export const testDatabaseConnection = async () => {
     const conn = await pool.getConnection();
     logger.info("✅ MySQL connected successfully");
     conn.release();
-  } catch (error) {
+  } catch (err) {
     logger.error("❌ MySQL connection failed:", err.message);
     process.exit(1);
   }
