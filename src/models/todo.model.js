@@ -1,7 +1,7 @@
 import { pool } from "../config/db.js";
 
 // Run once at startup to create table if not exists
-const initTable = async () => {
+export const initTable = async () => {
   const sql_query = `
     CREATE TABLE IF NOT EXISTS todos (
         id          VARCHAR(36) NOT NULL PRIMARY KEY,
