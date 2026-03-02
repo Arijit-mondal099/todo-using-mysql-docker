@@ -3,8 +3,10 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
+import cookieParser from "cookie-parser";
 
 import { errorHandler, notFound } from "./middlewares/error.middleware.js";
+import userRoutes from "./routes/user.routes.js";
 import todoRoutes from "./routes/todo.routes.js";
 
 const app = express();
@@ -27,6 +29,7 @@ app.use(
 // Request parsing
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Logging
 if (process.env.NODE_ENV !== 'test') {
@@ -39,6 +42,7 @@ app.get('/health', (req, res) => {
 });
 
 // Routes
+app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/todos', todoRoutes);
 
 // Error handling
